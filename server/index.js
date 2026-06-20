@@ -1,6 +1,7 @@
 import express from "express";
 import "dotenv/config";
 import router from "./routes/index.js";
+import { errorMiddleware } from "./middlewares/errorMiddleware.js";
 
 const app = express();
 
@@ -14,6 +15,8 @@ app.get("/", (req, res) => {
 // http://localhost:5000/auth/signup -> current version
 
 app.use("/auth", router);
+
+app.use(errorMiddleware);
 
 const PORT = process.env.PORT || 3000;
 
